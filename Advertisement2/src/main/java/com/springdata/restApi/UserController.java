@@ -1,4 +1,4 @@
-package com.springdata.restApi.controller;
+package com.springdata.restApi;
 
 
 
@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springdata.restApi.json.User;
-import com.springdata.restApi.services.UserService;
+
 
 @RestController
 @RequestMapping("/user")
@@ -22,21 +21,21 @@ public class UserController {
 	@Autowired
 	private UserService registrationService;
 	@RequestMapping(value="/register",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public User registerUser(@RequestBody User user) {
+	public UserJson registerUser(@RequestBody UserJson user) {
 		return registrationService.save(user);
 	}
 	@GetMapping(value="/getuser",produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public User getUserById(@RequestHeader(name="auth-token") String authToken) {
+	public UserJson getUserById(@RequestHeader(name="auth-token") String authToken) {
 			return registrationService.getCurrentUserDetails(authToken);
 	}
 	
 	@PostMapping(value="/login",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public String loginUser(@RequestBody User user){
+	public String loginUser(@RequestBody UserJson user){
 		return registrationService.autoLogin(user);
 	}
 	
 	@DeleteMapping(value="/logout",produces=MediaType.APPLICATION_JSON_VALUE)
-	public User logoutUser(@RequestHeader(name="auth-token") String authToken) {
+	public UserJson logoutUser(@RequestHeader(name="auth-token") String authToken) {
 		return registrationService.autoLogout(authToken);
 	}
 }

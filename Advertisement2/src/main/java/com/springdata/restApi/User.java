@@ -1,4 +1,4 @@
-package com.springdata.restApi.entity;
+package com.springdata.restApi;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

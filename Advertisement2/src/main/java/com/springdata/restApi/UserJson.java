@@ -1,16 +1,16 @@
-package com.springdata.restApi.json;
+package com.springdata.restApi;
 
 
-	public class User {
+	public class UserJson {
 		
 		private String userName,firstName,lastName,password,email,sessionId;
 		private long phone,id;
 		
-		public User() {
+		public UserJson() {
 			this.sessionId="";
 		}
 
-		public User(long id, String userName, String firstName, String lastName, String password, String email,
+		public UserJson(long id, String userName, String firstName, String lastName, String password, String email,
 				long phone) {
 			super();
 			this.id = id;
@@ -103,7 +103,7 @@ package com.springdata.restApi.json;
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			User other = (User) obj;
+			UserJson other = (UserJson) obj;
 			if (id != other.id)
 				return false;
 			return true;
