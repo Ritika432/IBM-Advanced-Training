@@ -63,22 +63,22 @@ public class MessageEntity {
 	
 	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object object) {
+		if (this == object)
 			return true;
-		if (obj == null)
+		
+		else if (object == null)
 			return false;
-		if (getClass() != obj.getClass())
+		
+	MessageEntity object2 = (MessageEntity) object;
+	if (this.id != object2.getId())
 			return false;
-		MessageEntity other = (MessageEntity) obj;
-		if (id != other.id)
-			return false;
+		else
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", message=" + message + ", userSendingMessage=" + userSendingMessage.getUserName()
-				+ ", forAdvertisement=" + forAdvertisement.getName() + "]";
+		return "Message :-id=" + id + ", message=" + message + ", userSendingMessage=" + userSendingMessage.getUserName()+ ", forAdvertisement=" + forAdvertisement.getName() + "";
 	}
 	
 }

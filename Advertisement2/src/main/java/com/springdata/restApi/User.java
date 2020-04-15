@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS_MASTER")
+@Table(name = "USERS")
 public class User {
 
 	
@@ -14,13 +14,13 @@ public class User {
 	@Column(name = "ID")
 	private long id;
 	
-	@Column(name = "USER_NAME")
+	@Column(name = "USERNAME")
 	private String userName;
 
-	@Column(name = "FIRST_NAME")
+	@Column(name = "FIRSTNAME")
 	private String firstName;
 	
-	@Column(name = "LAST_NAME")
+	@Column(name = "LASTNAME")
 	private String lastName;
 	
 	
@@ -34,7 +34,7 @@ public class User {
 	@Column(name="PHONE")
 	private long phone;;
 	
-	@Column(name="Session_ID")
+	@Column(name="SessionID")
 	private String sessionId;
 	
 	public User() {
@@ -122,21 +122,22 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", phone=" + phone + "]";
+		return "Users :-id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", phone=" + phone + "";
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object object) {
+		if (this == object)
 			return true;
-		if (obj == null)
+		
+		else if (object == null)
 			return false;
-		if (getClass() != obj.getClass())
+		
+	User object2 = (User) object;
+	if (this.id != object2.getId())
 			return false;
-		User other = (User) obj;
-		if (id != other.id)
-			return false;
+		else
 		return true;
 	}
 

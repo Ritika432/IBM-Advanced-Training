@@ -16,7 +16,6 @@ public class UserServiceImplementation implements UserService {
 		List<com.springdata.restApi.User> userEntityList = userRepository.findAll();
 		return UserUtil.convertUserEntityListToUserList(userEntityList);
 	}
-
 	@Override
 	public UserJson getCurrentUserDetails(String id) {
 		com.springdata.restApi.User userEntity = userRepository.findBySessionId(id).get(0);
@@ -31,14 +30,13 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public UserJson save(UserJson user) {
 		// TODO Auto-generated method stub
-		com.springdata.restApi.User userEntity = 
-				userRepository.save(UserUtil.convertUserToUserEntity(user));
+		com.springdata.restApi.User userEntity = userRepository.save(UserUtil.convertUserToUserEntity(user));
 		return UserUtil.convertUserEntityToUser(userEntity);
 	}
 
 	@Override
 	public UserJson update(UserJson user) {
-		com.springdata.restApi.User userEntity = userRepository.findById(user.getId()).get();
+		com.springdata.restApi.User userEntity = userRepository.findById((int) user.getId()).get();
 		if(userEntity != null) {
 			userEntity.setFirstName(user.getFirstName());
 			userEntity.setUserName(user.getUserName());
@@ -54,11 +52,9 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public boolean delete(String id) {
-		if(userRepository.existsById(Long.valueOf(id))) {
-			userRepository.deleteById(Long.valueOf(id));
+		if(userRepository.existsById(Integer.valueOf(id))) userRepository.deleteById(Integer.valueOf(id));
 			return true;
-		}
-		return false;
+			
 	}
 
 	@Override
@@ -77,31 +73,31 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public String autoLogin(UserJson user) {
-		com.springdata.restApi.User user1=userRepository.findByUserName(user.getUserName()).get(0);
-		if(user1!=null) {
-			if(user1.getPassword().equals((user.getPassword()))) {
+		com.springdata.restApi.User usernew=userRepository.findByUserName(user.getUserName()).get(0);
+		if(usernew!=null) {
+			if(usernew.getPassword().equals((user.getPassword()))) {
 				String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
-				user1.setSessionId(sessionId);
-				userRepository.save(user1);
+				usernew.setSessionId(sessionId);
+				userRepository.save(usernew);
 				return sessionId;
 			}
-			else {
-				return "invalid password";
-			}
-		}
-		
-		else {
-			return "invalid username";
-		}	
+			else 
+				return "invalid password";	
+				}
+			else
+				return "invalid username";
+			
 	}
 
 	@Override
-	public UserJson autoLogout(String apiKey) {
-		com.springdata.restApi.User user1=userRepository.findBySessionId(apiKey).get(0);
-		user1.setSessionId(null);
-		com.springdata.restApi.User userEntity=userRepository.save(user1);	
+	public UserJson autoLogout(String Key) {
+		com.springdata.restApi.User usernew=userRepository.findBySessionId(Key).get(0);
+		usernew.setSessionId(null);
+		com.springdata.restApi.User userEntity=userRepository.save(usernew);	
 		return UserUtil.convertUserEntityToUser(userEntity);
 	}
+
+
 
 	
 

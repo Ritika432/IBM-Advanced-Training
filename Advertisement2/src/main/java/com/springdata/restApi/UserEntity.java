@@ -10,49 +10,34 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS_MASTER")
+@Table(name = "USER")
 public class UserEntity {
-
-	
 	@Id
 	@Column(name = "ID")
 	private long id;
-	
-	@Column(name = "USER_NAME")
+	@Column(name = "USERNAME")
 	private String userName;
-
-	@Column(name = "FIRST_NAME")
+	@Column(name = "FIRSTNAME")
 	private String firstName;
-	
-	@Column(name = "LAST_NAME")
+	@Column(name = "LASTNAME")
 	private String lastName;
-	
-	
 	@Column(name = "PASSWORD")
 	private String password;
-	
-	
 	@Column(name="EMAIL")
 	private String email;
-	
 	@Column(name="PHONE")
 	private long phone;;
-	
-	@Column(name="Session_ID")
+	@Column(name="SessionID")
 	private String sessionId;
-	
 	@OneToMany
-	@JoinColumn(name = "user_entity_id")
-	private Set<AdvertiseEntity> advertisementEntities;
-	
+	@JoinColumn(name = "userentityid")
+	private Set<AdvertiseEntity> advertiseEntities;
 	@OneToMany
-	@JoinColumn(name = "from_user")
+	@JoinColumn(name = "user")
 	private Set<MessageEntity> messageSet;
-	
 	public UserEntity() {
 		this.sessionId="";
 	}
-
 	public UserEntity(long id, String userName, String firstName, String lastName, String password, String email,
 			long phone) {
 		super();
@@ -65,9 +50,6 @@ public class UserEntity {
 		this.phone = phone;
 		this.sessionId="";
 	}
-
-	
-	
 	public long getId() {
 		return id;
 	}
@@ -133,31 +115,31 @@ public class UserEntity {
 	}
 	
 
-	public Set<AdvertiseEntity> getAdvertisementEntities() {
-		return advertisementEntities;
+	public Set<AdvertiseEntity> getAdvertiseEntities() {
+		return advertiseEntities;
 	}
 
-	public void setAdvertisementEntities(Set<AdvertiseEntity> advertisementEntities) {
-		this.advertisementEntities = advertisementEntities;
+	public void setAdvertiseEntities(Set<AdvertiseEntity> advertiseEntities) {
+		this.advertiseEntities = advertiseEntities;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", phone=" + phone + "]";
+		return "User:-id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName+ ", email=" + email + ", phone=" + phone + "";
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object object) {
+		if (this == object)
 			return true;
-		if (obj == null)
+		
+		else if (object == null)
 			return false;
-		if (getClass() != obj.getClass())
+		
+	UserEntity object2 = (UserEntity) object;
+	if (this.id != object2.getId())
 			return false;
-		UserEntity other = (UserEntity) obj;
-		if (id != other.id)
-			return false;
+		else
 		return true;
 	}
 

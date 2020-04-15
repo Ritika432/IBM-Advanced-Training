@@ -179,9 +179,7 @@ public class AdvertiseEntity {
 
 	@Override
 	public String toString() {
-		return "AdvertisementEntity [id=" + id + ", name=" + name + ", title=" + title + ", category=" + category
-				+ ", description=" + description + ", status=" + status + ", postId=" + postId + ", userEntity="
-				+ userEntity + "]";
+		return "AdvertiseEntity :-id=" + id + ", name=" + name + ", title=" + title + ", category=" + category+ ", description=" + description + ", status=" + status + ", postId=" + postId + ", userEntity="+ userEntity +"" ;
 	}
 	
 

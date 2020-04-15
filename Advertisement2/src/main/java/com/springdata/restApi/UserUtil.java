@@ -16,8 +16,7 @@ public class UserUtil {
 	}
 	
 	public static com.springdata.restApi.UserJson convertUserEntityToUser(User userEntity) {
-		return new com.springdata.restApi.UserJson(userEntity.getId(), userEntity.getUserName(), 
-				userEntity.getFirstName(), userEntity.getLastName(),userEntity.getPassword(),userEntity.getEmail(),userEntity.getPhone());
+		return new com.springdata.restApi.UserJson(userEntity.getId(), userEntity.getUserName(), userEntity.getFirstName(), userEntity.getLastName(),userEntity.getPassword(),userEntity.getEmail(),userEntity.getPhone());
 	}
 
 	public static User convertUserToUserEntity(com.springdata.restApi.UserJson user) {

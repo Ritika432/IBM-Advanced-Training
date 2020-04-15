@@ -4,14 +4,10 @@ package com.springdata.restApi;
 	public class UserJson {
 		
 		private String userName,firstName,lastName,password,email,sessionId;
-		private long phone,id;
+		private int phone,id;
 		
-		public UserJson() {
-			this.sessionId="";
-		}
-
-		public UserJson(long id, String userName, String firstName, String lastName, String password, String email,
-				long phone) {
+	
+		public UserJson(int id, String userName, String firstName, String lastName, String password, String email,int phone) {
 			super();
 			this.id = id;
 			this.userName = userName;
@@ -25,7 +21,7 @@ package com.springdata.restApi;
 
 		
 		
-		public long getId() {
+		public int getId() {
 			return id;
 		}
 
@@ -69,11 +65,11 @@ package com.springdata.restApi;
 			this.email = email;
 		}
 
-		public long getPhone() {
+		public int getPhone() {
 			return phone;
 		}
 
-		public void setPhone(long phone) {
+		public void setPhone(int phone) {
 			this.phone = phone;
 		}
 
@@ -85,27 +81,27 @@ package com.springdata.restApi;
 			this.sessionId = sessionId;
 		}
 
-		public void setId(long id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 
 		@Override
 		public String toString() {
-			return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
-					+ ", email=" + email + ", phone=" + phone + "]";
+			return "User:-id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName+ ", email=" + email + ", phone=" + phone + "";
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
+		public boolean equals(Object object) {
+			if (this == object)
 				return true;
-			if (obj == null)
+			
+			else if (object == null)
 				return false;
-			if (getClass() != obj.getClass())
+			
+		UserJson object2 = (UserJson) object;
+		if (this.id != object2.getId())
 				return false;
-			UserJson other = (UserJson) obj;
-			if (id != other.id)
-				return false;
+			else
 			return true;
 		}
 

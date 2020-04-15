@@ -21,5 +21,5 @@ public List<UserJson> getAllUsers();
 	
 	public List<UserJson> getUsersByOrderByFirstNameDesc();
 	public String autoLogin(UserJson user);
-	public UserJson autoLogout(String apiKey);
+	public UserJson autoLogout(String Key);
 }
